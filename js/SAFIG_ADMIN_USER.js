@@ -10,7 +10,7 @@ $(document).ready(function(){
 	.done(function(stream) {
 		data = jQuery.parseJSON(stream);
 		$("#listadoregistros2 tbody").empty();
-		console.log(data);
+		//console.log(data);
 		data.forEach(function(element, index, array){
 			switch(element['fkestado']){
 				case '2': var EstadoClass1 = 'alert-info'; break;
@@ -210,41 +210,71 @@ $(document).ready(function(){
 		"			<div class='card card-secondary'>"+
 		"				<div class='card-body'>"+
 		"					<div class='row'>"+
-		"						<div class='col-sm-6'>"+
+		"						<div class='col-sm-4'>"+
 		"							<div class='form-group'>"+
 		"								<label><i class='fa fa-users'>&nbsp; </i> Nombre  :</label>"+
-		"								<input class='form-control'  type='text'id='Usuario'  placeholder='Ingrese nombre del usuario' />"+
+		"								<input class='form-control'  type='text'id='nombre'  placeholder='Ingrese nombre' />"+
 		"							</div>"+				
 		"						</div>"+
-		"						<div class='col-sm-6'>"+
+		"						<div class='col-sm-4'>"+
 		"							<div class='form-group'>"+
-		"								<label> <i class='fa fa-mail'>&nbsp; </i>Correo: </label>"+
-		"								<input   class='form-control' type='text'  placeholder='carlos@...' id='Correo' name='Correo' />"+
+		"								<label> <i class='fa fa-users'>&nbsp; </i>Apellido: </label>"+
+		"								<input   class='form-control' type='text'  placeholder='Ingrese apellido' id='apellido'  />"+
 		"							</div>"+				
-		"						</div>"+	
+		"						</div>"+
+		"						<div class='col-sm-4'>"+
+		"							<div class='form-group'>"+
+		"								<label> <i class='fa fa-list'>&nbsp; </i>DPI: </label>"+
+		"								<input   class='form-control' type='text'  placeholder='ingrese DPI' id='dpi'/>"+
+		"							</div>"+				
+		"						</div>"+
 		"					</div>"+
-		"					<div class='row'>"+
+		"					<div class='row'>"+		
 		"						<div class='col-sm-6'>"+
 		"							<div class='form-group'>"+
-		"								<label><i class='fa fa-num'>&nbsp; </i> Password</label>"+
-		"								<input class='form-control' id='password1' placeholder='****' />"+
+		"								<label> <i class='fa fa-list'>&nbsp; </i>Nit: </label>"+
+		"								<input   class='form-control' type='text'  placeholder='ingrese Numero de NIT' id='nit'/>"+
+		"							</div>"+				
+		"						</div>"+					
+		"						<div class='col-sm-6'>"+
+		"							<div class='form-group'>"+
+		"								<label><i class='fa fa-calendar'>&nbsp; </i> Fecha de Nacimiento</label>"+
+		"								<input class='form-control'  type='date'  id='nacimiento' />"+
 		"							</div>"+				
 		"						</div>"+
-		"						<div class='col-sm-6'>"+
+		"					</div>"+
+		"					<div class='progress'>"+
+		"						<div class='progress-bar bg-info' role='progressbar' style='width: 100%' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>"+
+		"					</div>"+
+		"					<div class='row pt-4'>"+
+		"						<div class='col-sm-4'>"+
 		"							<div class='form-group'>"+
-		"								<label> <i class='fa fa-user'>&nbsp; </i> Institucion: </label>"+
-		"								<select class='form-control' type='text' id='Select_Institucion' ></select>"+
+		"								<label> <i class='fa fa-user'>&nbsp; </i> Usuario: </label>"+
+		"								<input class='form-control'  type='text' placeholder='carlos@safig.com'  id='usuario' />"+
 		"							</div>"+				
-		"						</div>"+	
+		"						</div>"+
+		"						<div class='col-sm-4'>"+
+		"							<div class='form-group'>"+
+		"								<label> <i class='fa fa-photo'>&nbsp; </i> Password: </label>"+
+		"								<input class='form-control'  type='password'  id='Password' />"+
+		"							</div>"+				
+		"						</div>"+
+		"						<div class='col-sm-4'>"+
+		"							<div class='form-group'>"+
+		"								<label> <i class='fa fa-img'>&nbsp; </i> Foto: </label>"+
+		"								<input id='file-upload' type='file' name='file_upload' multiple />"+
+		"							</div>"+				
+		"						</div>"+		
 		"					</div>"+
 		"					<div class='row'>"+
 		"						<div class='col-sm-12'>"+
 		"							<div class='form-group'>"+
-		"								<label> <i class='fa fa-list'>&nbsp; </i>  Rol:  </label>"+
+		"								<label> <i class='fa fa-img'>&nbsp; </i> Rol: </label>"+
 		"								<select class='form-control' type='text' id='Select_Rol' ></select>"+
-		"							</div>"+
-		"						</div>"+
+		"							</div>"+				
+		"						</div>"+		
 		"					</div>"+
+		"				</div>"+
 		"					<div class='row pt-4'>"+
 		"						<div class='col-12'>"+ 
 		"							<div class='form-group'>"+
@@ -261,13 +291,13 @@ $(document).ready(function(){
 		"	</div>"
 			
 		);
-		//CARGAR LISTADO INSITUCIONES//
-		$.ajax({type: "POST", url: "../php/TOWER_ADMIN_USER.php", async: true , data: {'a0': 2}})
+		//CARGAR ROLES//
+		$.ajax({type: "POST", url: "../php/SAFIG_ADMIN_USER.php", async: true , data: {'a0': 2}})
 		.done(function(stream) {	
 			data = jQuery.parseJSON(stream);
-			$("#Select_Institucion").append('<option  value="0" selected="selected">Seleccione Institucion</option>');
+			$("#Select_Rol").append('<option  value="0" selected="selected">Seleccione el rol que tendra</option>');
 			data.forEach(function(element, index, array){
-				$("#Select_Institucion").append('<option  value="'+element['ID_INSTITUCION']+'">'+element['NOMBRE']+'</option>');
+				$("#Select_Rol").append('<option  value="'+element['idrol']+'">'+element['rol']+'</option>');
 			});
 		}); 
 		
@@ -276,20 +306,24 @@ $(document).ready(function(){
 		//GUARDAR USUARIO//
 		$('#GuardarData').off().click(function(){
 			var info="Debe ingresar todos los datos";
-			var Usuario = $('#Usuario').val(); if(Usuario==""){alert(info); $("#Usuario").css("borderColor", "red");slide().stop();}
-			var Correo = $('#Correo').val(); if(Correo==""){alert(info); $("#Correo").css("borderColor", "red"); slide().stop(); }
-			var password1 = $('#password1').val(); if(password1==""){alert(info); $("#password1").css("borderColor", "red");slide().stop();}
-			var Select_Institucion = $('#Select_Institucion').val(); if(Select_Institucion==""){alert(info); $("#Select_Institucion").css("borderColor", "red");slide().stop();}
-			var Select_Rol=$('#Select_Rol').val(); if(Select_Rol==""){alert(info); $("#Select_Rol").css("borderColor", "red");slide().stop();  }
+			var nombre = $('#nombre').val(); if(nombre==""){alert(info); $("#nombre").css("borderColor", "red");slide().stop();}
+			var apellido = $('#apellido').val(); if(apellido==""){alert(info); $("#apellido").css("borderColor", "red"); slide().stop(); }
+			var nit = $('#nit').val(); if(nit==""){alert(info); $("#nit").css("borderColor", "red");slide().stop();}
+			var dpi = $('#dpi').val(); if(dpi==""){alert(info); $("#dpi").css("borderColor", "red");slide().stop();}
+			var nacimiento = $('#nacimiento').val(); if(nacimiento==""){alert(info); $("#nacimiento").css("borderColor", "red");slide().stop();}
+			var usuario=$('#usuario').val(); if(usuario==""){alert(info); $("#usuario").css("borderColor", "red");slide().stop();}
+			var Password=$('#Password').val(); if(Password==""){alert(info); $("#Password").css("borderColor", "red");slide().stop();  }
+			var file_upload=$('#file-upload').val(); if(file_upload==""){alert(info); $("#file-upload").css("borderColor", "red");slide().stop();  }
+			var Select_Rol=$('#Select_Rol').val(); if(Select_Rol=="0"){alert(info); $("#Select_Rol").css("borderColor", "red");slide().stop();  }
+			var CodeSha = hex_sha512(Password);
 			
-			$.ajax({type: "POST", url: "../php/TOWER_ADMIN_USER.php", async: true , data: {a0: 4,Usuario:Usuario,Correo:Correo,password1:password1,Select_Institucion:Select_Institucion,Select_Rol:Select_Rol}})
+			$.ajax({type: "POST", url: "../php/SAFIG_ADMIN_USER.php", async: true , data: {a0: 3,nombre:nombre,apellido:apellido,dpi:dpi,nit:nit,nacimiento:nacimiento,usuario:usuario,file_upload:file_upload,Select_Rol:Select_Rol,CodeSha:CodeSha}})
 			.done(function(stream) {
 				console.log(stream);
-				alert('Usuario Creado');
-				location.reload();
-			});			
+				//alert('Usuario Creado');
+				//location.reload();
+			});
 		}); 
-		
 	}
 	
 	function PDF_USER(){

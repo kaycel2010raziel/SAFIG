@@ -20,7 +20,8 @@
 <html lang="en">
 	<head>
 	   <?php echo header_style();?>
-		<script type="text/javascript" src="../js/SAFIG_ADMIN_USER.js"></script>	
+		<script type="text/javascript" src="../js/SAFIG_ADMIN_USER.js"></script>
+		<script type="text/javascript" src="../js/login_sha512.js"></script>		
 		<script type="text/javascript" src="../js/Timeout_login.js"></script>
 	</head>
 	<body class="hold-transition sidebar-mini">

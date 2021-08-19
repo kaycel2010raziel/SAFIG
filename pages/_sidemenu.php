@@ -242,9 +242,10 @@ function Modals(){
 			';
 }
 function get_side_logout(){
-	echo ' <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			</button>
-			<div class="dropdown-menu text-center" aria-labelledby="dropdownMenu2">
-				<a href="../logout.php">Cerrar Sesión</a>
-			</div>';
+	echo ' 
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+		<div class="dropdown-menu text-center" aria-labelledby="dropdownMenu2">
+			<a style="display: block;" class="btn btn-primary m-1 px-1" href="../password_change.php">Cambiar Contraseña</a>
+			<a style="display: block;" class="btn btn-danger m-1  px-1" href="../logout.php">Cerrar Sesión</a>
+		</div>';
 }

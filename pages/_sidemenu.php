@@ -12,7 +12,7 @@ function get_sidemenu_admin(){
 				</a>
 				<ul class="nav nav-treeview">
 					<li class="nav-item">
-						<a href="#" class="nav-link">
+						<a href="SAFIG_ADMIN_USER.php" class="nav-link">
 							<i class="far fa-user nav-icon"></i>
 							<p>USUARIOS</p>
 						</a>

@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	console.log('conected');
-	
+	$('#loginModal').modal('show');
 	
 	/*
 	$.ajax({type: "POST", url: "../php/TOWER_ADMIN.php", async: true , data: {'a0': 1}})

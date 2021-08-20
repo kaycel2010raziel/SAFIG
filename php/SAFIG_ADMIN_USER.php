@@ -23,21 +23,12 @@
 			
 			$Estado_Usuario = 2;
 			#INSERTAR USUARIO
-			$NEW_USER = write("INSERT INTO usuario (nombre,apellido,usuario,password,dpi,nit,fecha_nacimiento,fkrol,fkestado)values('$nombre','$apellido','$usuario','$CodeSha','$dpi','$nit','$nacimiento',$Select_Rol,$Estado_Usuario)", $Safigdb);
+			$NEW_USER = write_return("INSERT INTO usuario (nombre,apellido,usuario,password,dpi,nit,fecha_nacimiento,fkrol,fkestado)values('$nombre','$apellido','$usuario','$CodeSha','$dpi','$nit','$nacimiento',$Select_Rol,$Estado_Usuario)", $Safigdb);
 			#CARGAR IMAGEN AL SERVIDOR
-			/*
-			$allowed_extensions = array(
-					'jpg',
-					'jpeg',
-					'png',
-					'bmp',
-				);
-				$target_dir = '/var/www/html/uploads/archivo/licencias/'.$username.'/';
+			$target_dir = '/SAFIG/img/user/';
 				foreach ($_FILES as $file) {
-					$token = bin2hex(openssl_random_pseudo_bytes(32));
 					$file_name = basename($file["name"]);
 					$target_file = $target_dir;
-					$uploadOk = 1;
 					$fileType = strtolower(pathinfo($file_name,PATHINFO_EXTENSION));
 					// Check if file already exists
 					if (file_exists($target_file)) {
@@ -48,33 +39,17 @@
 						mkdir($target_file, 0777, true);
 						$uploadOk = 1;
 						$target_file = $target_dir. $file_name;
-					}
-					if ($file["size"] > 10485760) {
-						$uploadOk = 3;
-					}
-					if(!in_array($fileType, $allowed_extensions)) {
-						$uploadOk = 4;
-					}
-					// Check if $uploadOk is set to 0 by an error
-					if ($uploadOk != 1) {
-						$upload_status = $uploadOk;
-						// if everything is ok, try to upload file
-					} else {
+					}else {
 						
 						if (move_uploaded_file($file["tmp_name"], $target_file)) {
-							$Path_Data = substr($target_file,13);
-							
-							$CargarImagen = write("UPDATE DAIS_ARMA_REGISTRO_EMPLEADO SET FOTO_LICENCIA='$Path_Data' WHERE IDDAIS_ARMA_REGISTRO_EMPLEADO=$IDREGISTRO", $siedb);			
+							$CargarImagen = write("update usuario set foto='$target_file' where idusuario=$NEW_USER", $Safigdb);			
 							$upload_status = 1;
 						} else {
 							echo "Error del Sistema. Comunicarse con DTI.";
-							$upload_status = 0;
 						}
-						
 					}
 				}
-				*/
-			
+				echo json_encode($CargarImagen);
 			break;
 			
 	}

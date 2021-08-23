@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 17-08-2021 a las 17:14:45
--- Versión del servidor: 10.3.30-MariaDB
--- Versión de PHP: 7.4.21
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 23-08-2021 a las 16:28:49
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `safigdb`
+-- Base de datos: `safig`
 --
 
 -- --------------------------------------------------------
@@ -77,6 +77,16 @@ CREATE TABLE `estado` (
   `fecha_hora` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `estado`
+--
+
+INSERT INTO `estado` (`idestado`, `descripcion`, `nombre`, `idpadre`, `fecha_hora`) VALUES
+(1, 'GENERAL_ESTATUS', 'GENERAL_ESTATUS', 0, '2021-08-17 17:47:59'),
+(2, 'ACTIVO', 'ACTIVO', 1, '2021-08-17 17:49:15'),
+(3, 'INACTIVO', 'INACTIVO', 1, '2021-08-17 17:49:15'),
+(4, 'ELIMINADO', 'ELIMINADO', 1, '2021-08-17 17:50:21');
+
 -- --------------------------------------------------------
 
 --
@@ -108,6 +118,47 @@ CREATE TABLE `laboratorio` (
   `fkmunicipio` int(11) NOT NULL,
   `fkestado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `login_access`
+--
+
+CREATE TABLE `login_access` (
+  `idaccess` int(11) NOT NULL,
+  `user_id` varchar(75) NOT NULL,
+  `remote_ip` varchar(75) NOT NULL,
+  `status` int(11) NOT NULL,
+  `login_string` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `login_access`
+--
+
+INSERT INTO `login_access` (`idaccess`, `user_id`, `remote_ip`, `status`, `login_string`) VALUES
+(1, '1', '0', 0, '0000'),
+(2, '0', '::1', 1, 'f733cfe26e7a6ed723abd4a53bba470ce297cc834470d20c7f5e9fd1ab17ff34a573d8a964d1f0aaca517a1a17541c4b9a02bfb744d54d14d0e09673999d7dfb'),
+(3, '0', '::1', 1, 'f733cfe26e7a6ed723abd4a53bba470ce297cc834470d20c7f5e9fd1ab17ff34a573d8a964d1f0aaca517a1a17541c4b9a02bfb744d54d14d0e09673999d7dfb'),
+(4, '0', '::1', 1, 'f733cfe26e7a6ed723abd4a53bba470ce297cc834470d20c7f5e9fd1ab17ff34a573d8a964d1f0aaca517a1a17541c4b9a02bfb744d54d14d0e09673999d7dfb'),
+(5, '0', '::1', 3, ''),
+(6, 'mgonzalez@gmail.com', '::1', 4, ''),
+(7, '0', '::1', 1, 'f733cfe26e7a6ed723abd4a53bba470ce297cc834470d20c7f5e9fd1ab17ff34a573d8a964d1f0aaca517a1a17541c4b9a02bfb744d54d14d0e09673999d7dfb'),
+(8, '1', '::1', 1, 'f733cfe26e7a6ed723abd4a53bba470ce297cc834470d20c7f5e9fd1ab17ff34a573d8a964d1f0aaca517a1a17541c4b9a02bfb744d54d14d0e09673999d7dfb'),
+(9, '1', '::1', 1, 'f733cfe26e7a6ed723abd4a53bba470ce297cc834470d20c7f5e9fd1ab17ff34a573d8a964d1f0aaca517a1a17541c4b9a02bfb744d54d14d0e09673999d7dfb'),
+(10, '1', '::1', 1, 'f733cfe26e7a6ed723abd4a53bba470ce297cc834470d20c7f5e9fd1ab17ff34a573d8a964d1f0aaca517a1a17541c4b9a02bfb744d54d14d0e09673999d7dfb'),
+(11, '1', '::1', 1, 'f733cfe26e7a6ed723abd4a53bba470ce297cc834470d20c7f5e9fd1ab17ff34a573d8a964d1f0aaca517a1a17541c4b9a02bfb744d54d14d0e09673999d7dfb'),
+(12, '1', '::1', 1, 'f733cfe26e7a6ed723abd4a53bba470ce297cc834470d20c7f5e9fd1ab17ff34a573d8a964d1f0aaca517a1a17541c4b9a02bfb744d54d14d0e09673999d7dfb'),
+(13, 'prueba@gmail.com', '::1', 4, ''),
+(14, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(15, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(16, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(17, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(18, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(19, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(20, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(21, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0');
 
 -- --------------------------------------------------------
 
@@ -226,6 +277,15 @@ CREATE TABLE `rol` (
   `fkestado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`idrol`, `nombre`, `fecha_hora`, `fkestado`) VALUES
+(1, 'ADMIN', '2021-08-17 17:51:37', 2),
+(2, 'FARMACIA', '2021-08-17 17:51:37', 2),
+(3, 'CLIENTE', '2021-08-17 17:51:52', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -250,6 +310,8 @@ CREATE TABLE `usuario` (
   `idusuario` int(11) NOT NULL,
   `nombre` varchar(75) DEFAULT NULL,
   `apellido` varchar(75) DEFAULT NULL,
+  `usuario` varchar(75) NOT NULL,
+  `password` varchar(75) NOT NULL,
   `dpi` varchar(20) DEFAULT NULL,
   `nit` varchar(15) DEFAULT NULL,
   `genero` tinyint(4) DEFAULT NULL,
@@ -259,6 +321,14 @@ CREATE TABLE `usuario` (
   `fkrol` int(11) NOT NULL,
   `fkestado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`idusuario`, `nombre`, `apellido`, `usuario`, `password`, `dpi`, `nit`, `genero`, `foto`, `fecha_nacimiento`, `fecha_hora`, `fkrol`, `fkestado`) VALUES
+(1, 'Max', 'Gonzalez', 'mgonzalez', '$2y$10$9HIVa7ZJGGCfR7cwXbtrIOMkNNKaAqT7HY/h5LzWnCZJ9WKSTIYL6', '2525594870608', '80503853', 0, 'AdminLTELogo.png', '1994-08-28', '2021-08-17 23:58:06', 1, 2),
+(2, 'miguel', 'ITO', 'prueba1', '6e4a044cb10cf1863a6f7105e593857c67250e6863b4d79e3f5678b2547e908307a5efa5a8a', '252559487009', '80503859', NULL, NULL, '1995-05-28', '2021-08-21 04:05:48', 3, 4);
 
 -- --------------------------------------------------------
 
@@ -326,6 +396,12 @@ ALTER TABLE `laboratorio`
   ADD KEY `fk_laboratorio_municipio1_idx` (`fkmunicipio`);
 
 --
+-- Indices de la tabla `login_access`
+--
+ALTER TABLE `login_access`
+  ADD PRIMARY KEY (`idaccess`);
+
+--
 -- Indices de la tabla `municipio`
 --
 ALTER TABLE `municipio`
@@ -339,7 +415,6 @@ ALTER TABLE `municipio`
 ALTER TABLE `orden`
   ADD PRIMARY KEY (`idorden`),
   ADD KEY `fk_orden_pedido1_idx` (`fkpedido`),
-  ADD KEY `fk_orden_usuario1_idx` (`fkusuario`),
   ADD KEY `fk_orden_estado1_idx` (`fkestado`);
 
 --
@@ -348,7 +423,7 @@ ALTER TABLE `orden`
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`idpedido`),
   ADD KEY `fk_pedido_estado1_idx` (`fkestado`),
-  ADD KEY `fk_pedido_usuario1_idx` (`fkusuario`);
+  ADD KEY `fk_pedido_usuario1` (`fkusuario`);
 
 --
 -- Indices de la tabla `pedido_producto`
@@ -411,9 +486,9 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `usuario_contacto`
   ADD PRIMARY KEY (`idusuario_contacto`),
-  ADD KEY `fk_usuario_contacto_usuario1_idx` (`fkusuario`),
   ADD KEY `fk_usuario_contacto_municipio1_idx` (`fkmunicipio`),
-  ADD KEY `fk_usuario_contacto_estado1_idx` (`fkesatado`);
+  ADD KEY `fk_usuario_contacto_estado1_idx` (`fkesatado`),
+  ADD KEY `fk_usuario_contacto_usuario1` (`fkusuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -441,7 +516,7 @@ ALTER TABLE `descuento`
 -- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
-  MODIFY `idestado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idestado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `farmacia`
@@ -454,6 +529,12 @@ ALTER TABLE `farmacia`
 --
 ALTER TABLE `laboratorio`
   MODIFY `idlaboratorio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `login_access`
+--
+ALTER TABLE `login_access`
+  MODIFY `idaccess` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `municipio`
@@ -501,13 +582,19 @@ ALTER TABLE `producto_famacia`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `idrol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idrol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
   MODIFY `idtipo_producto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_contacto`

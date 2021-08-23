@@ -27,7 +27,7 @@
 <body class="hold-transition login-page">
 	<div class="login-box">
 	  <div class="login-logo">
-		<a href="#"><strong>Torre</strong>Cambio de Contraseña</a>
+		<a href="#"><strong>SAFIG</strong>Cambio de Contraseña</a>
 	  </div>
 	  <!-- /.login-logo -->
 	  <div class="card">

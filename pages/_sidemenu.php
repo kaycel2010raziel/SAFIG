@@ -26,7 +26,7 @@ function get_sidemenu_admin(){
 				</a>
 				<ul class="nav nav-treeview">
 					<li class="nav-item">
-						<a href="#" class="nav-link">
+						<a href="SAFIG_ADMIN_PHARMACY.php" class="nav-link">
 							<i class="nav-icon fas fa-check"></i>
 							<p>REGISTAR</p>
 						</a>

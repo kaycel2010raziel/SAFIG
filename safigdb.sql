@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-08-2021 a las 00:55:23
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.1
+-- Tiempo de generación: 24-08-2021 a las 19:33:23
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `safig`
+-- Base de datos: `safigdb`
 --
 
 -- --------------------------------------------------------
@@ -136,7 +136,7 @@ CREATE TABLE `farmacia` (
 --
 
 INSERT INTO `farmacia` (`idfarmacia`, `nombre`, `direccion`, `fecha_hora`, `foto`, `fkmunicipio`, `fkestado`) VALUES
-(1, 'Farmacias Galeno', '7a Avenida 16-45', '2021-08-23 15:23:01', NULL, 1, 2),
+(1, 'Farmacias Galeno', '7a Avenida 16-45', '2021-08-23 15:23:01', 'SHR_HDR1.jpg', 1, 2),
 (2, 'Cruz Verde', 'Calle Zona 9', '2021-08-23 15:23:01', NULL, 1, 2),
 (3, 'Farmacias Batres S. A.', '9na. calle 1 Avenida zona 1', '2021-08-23 15:59:09', NULL, 1, 2),
 (4, 'Meykos', '6 Avenida 5ta. Calle Zona 9', '2021-08-23 15:59:09', NULL, 1, 2),
@@ -159,6 +159,7 @@ CREATE TABLE `laboratorio` (
   `direccion` varchar(100) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `correo` varchar(75) DEFAULT NULL,
+  `foto` varchar(75) NOT NULL,
   `fecha_hora` timestamp NULL DEFAULT current_timestamp(),
   `fkmunicipio` int(11) NOT NULL,
   `fkestado` int(11) NOT NULL
@@ -168,17 +169,18 @@ CREATE TABLE `laboratorio` (
 -- Volcado de datos para la tabla `laboratorio`
 --
 
-INSERT INTO `laboratorio` (`idlaboratorio`, `nombre`, `direccion`, `telefono`, `correo`, `fecha_hora`, `fkmunicipio`, `fkestado`) VALUES
-(1, 'Industrias Farmacéuticas INFASA S.A', 'Carretera Roosevelt Km 15.5 0-80 Zona 2 ', '(+502) 2411 5454', 'consultas@infasa.net', '2021-08-23 15:00:21', 8, 2),
-(2, 'Loralva S.A', '1 Calle 0-15 Zona 1', '(+502) 6686 0300', 'contacto@loralva.com', '2021-08-23 15:03:00', 15, 2),
-(3, 'Laboratorios Químicos Farmacéuticos Lancasco', 'KM. 15.5 Carretera Roosevelt Zona 7', '(+502) 2323 2500', 'clientes@lancasco.com', '2021-08-23 15:03:00', 8, 2),
-(4, 'Laboratorios Menarini', '10 C 1-40 Zona 9', '(+502) 2427 4700', 'contactos@menarini.com', '2021-08-23 15:04:32', 1, 2),
-(5, 'Abbott Laboratorios Limitada', '5 Avenida 5-55 Zona 14 Europlaza Torre 1 Nivel 10', '(+502) 2420 9748', 'clientes@abbott.com', '2021-08-23 15:12:46', 1, 2),
-(6, 'Laboratorios Sued', 'Calzada Atanasio Tzul 22-00 Zona 12 Centro Empresarial Cortijo III Bodega 912', '(+502) 2462 6658', 'clientes@sued.com', '2021-08-23 15:14:15', 1, 2),
-(7, 'Quimica Universal De Centroamerica, S.A', '2 Calle 3-20 Zona 1', ' (+502) 2220 1040', 'consultas@quimicauniversal.com', '2021-08-23 15:14:15', 1, 2),
-(8, ' Drogueríalatinoamericana D.I.L.A.S.A', '4 Avenida 3-32 Zona 4 ', ' (+502) 5494 1025', 'clientes@drogerialasagt.com', '2021-08-23 15:15:42', 31, 2),
-(9, 'Norvanda Healthcare, S.A.', '5 Avenida 5-55 Zona 14 Edificio Europlaza Torre I 603', ' (+502) 2299 7400', 'soporte@Healthcare.com', '2021-08-23 15:16:57', 1, 2),
-(10, 'Laboratorio Y Drogueria Qualipharm S.A.', '4 Avenida 19-33 Zona 14', '(+502) 2414 4242', 'soporte@Qualipharm.com', '2021-08-23 15:18:44', 1, 2);
+INSERT INTO `laboratorio` (`idlaboratorio`, `nombre`, `direccion`, `telefono`, `correo`, `foto`, `fecha_hora`, `fkmunicipio`, `fkestado`) VALUES
+(1, 'Industrias Farmacéuticas INFASA S.A', 'Carretera Roosevelt Km 15.5 0-80 Zona 2 ', '(+502) 2411 5454', 'consultas@infasa.net', '', '2021-08-23 15:00:21', 8, 2),
+(2, 'Loralva S.A', '1 Calle 0-15 Zona 1', '(+502) 6686 0300', 'contacto@loralva.com', '', '2021-08-23 15:03:00', 15, 2),
+(3, 'Laboratorios Químicos Farmacéuticos Lancasco', 'KM. 15.5 Carretera Roosevelt Zona 7', '(+502) 2323 2500', 'clientes@lancasco.com', '', '2021-08-23 15:03:00', 8, 2),
+(4, 'Laboratorios Menarini', '10 C 1-40 Zona 9', '(+502) 2427 4700', 'contactos@menarini.com', '', '2021-08-23 15:04:32', 1, 2),
+(5, 'Abbott Laboratorios Limitada', '5 Avenida 5-55 Zona 14 Europlaza Torre 1 Nivel 10', '(+502) 2420 9748', 'clientes@abbott.com', '', '2021-08-23 15:12:46', 1, 2),
+(6, 'Laboratorios Sued', 'Calzada Atanasio Tzul 22-00 Zona 12 Centro Empresarial Cortijo III Bodega 912', '(+502) 2462 6658', 'clientes@sued.com', '', '2021-08-23 15:14:15', 1, 2),
+(7, 'Quimica Universal De Centroamerica, S.A', '2 Calle 3-20 Zona 1', ' (+502) 2220 1040', 'consultas@quimicauniversal.com', '', '2021-08-23 15:14:15', 1, 2),
+(8, ' Drogueríalatinoamericana D.I.L.A.S.A', '4 Avenida 3-32 Zona 4 ', ' (+502) 5494 1025', 'clientes@drogerialasagt.com', '', '2021-08-23 15:15:42', 31, 2),
+(9, 'Norvanda Healthcare, S.A.', '5 Avenida 5-55 Zona 14 Edificio Europlaza Torre I 603', ' (+502) 2299 7400', 'soporte@Healthcare.com', '', '2021-08-23 15:16:57', 1, 2),
+(10, 'Laboratorio Y Drogueria Qualipharm S.A.', '4 Avenida 19-33 Zona 14', '(+502) 2414 4242', 'soporte@Qualipharm.com', '', '2021-08-23 15:18:44', 1, 2),
+(11, 'pruebas', 'alli', '15651', 'data', '', '2021-08-24 13:00:31', 75, 4);
 
 -- --------------------------------------------------------
 
@@ -219,7 +221,11 @@ INSERT INTO `login_access` (`idaccess`, `user_id`, `remote_ip`, `status`, `login
 (18, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
 (19, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
 (20, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
-(21, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0');
+(21, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(22, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(23, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(24, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0'),
+(25, '1', '::1', 1, 'b6751a9c13fe59dfa4eaa0452bd73425758071278c42659093a49da60e1ea89fdcdf66dc05e2c2535b25f56e876f1e07c8ee616e931b6e72e396b23333e1eca0');
 
 -- --------------------------------------------------------
 
@@ -825,6 +831,26 @@ INSERT INTO `usuario_contacto` (`idusuario_contacto`, `telefono`, `correo`, `dir
 (1, '55953680', 'prueba_correo@gmail.com', '8va. Calle 7ma. Avenida', 11, 1, 1, 2),
 (2, '57988632', 'prueba_correo@gmail.com', '20. calle 10 avenida', 1, 1, 1, 2);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_farmacia`
+--
+
+CREATE TABLE `usuario_farmacia` (
+  `idusuario_farmacia` int(11) NOT NULL,
+  `fkusuario` int(11) NOT NULL,
+  `fkfarmacia` int(11) NOT NULL,
+  `fkestado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario_farmacia`
+--
+
+INSERT INTO `usuario_farmacia` (`idusuario_farmacia`, `fkusuario`, `fkfarmacia`, `fkestado`) VALUES
+(1, 1, 7, 2);
+
 --
 -- Índices para tablas volcadas
 --
@@ -893,7 +919,8 @@ ALTER TABLE `municipio`
 ALTER TABLE `orden`
   ADD PRIMARY KEY (`idorden`),
   ADD KEY `fk_orden_pedido1_idx` (`fkpedido`),
-  ADD KEY `fk_orden_estado1_idx` (`fkestado`);
+  ADD KEY `fk_orden_estado1_idx` (`fkestado`),
+  ADD KEY `fk_orden_usuario1` (`fkusuario`);
 
 --
 -- Indices de la tabla `pedido`
@@ -970,6 +997,15 @@ ALTER TABLE `usuario_contacto`
   ADD KEY `fk_usuario_contacto_usuario1` (`fkusuario`);
 
 --
+-- Indices de la tabla `usuario_farmacia`
+--
+ALTER TABLE `usuario_farmacia`
+  ADD PRIMARY KEY (`idusuario_farmacia`),
+  ADD KEY `fkusuario` (`fkusuario`),
+  ADD KEY `fkestado` (`fkestado`),
+  ADD KEY `fkfarmacia` (`fkfarmacia`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -1007,13 +1043,13 @@ ALTER TABLE `farmacia`
 -- AUTO_INCREMENT de la tabla `laboratorio`
 --
 ALTER TABLE `laboratorio`
-  MODIFY `idlaboratorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idlaboratorio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `login_access`
 --
 ALTER TABLE `login_access`
-  MODIFY `idaccess` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idaccess` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `municipio`
@@ -1080,6 +1116,12 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `usuario_contacto`
   MODIFY `idusuario_contacto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario_farmacia`
+--
+ALTER TABLE `usuario_farmacia`
+  MODIFY `idusuario_farmacia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -1197,6 +1239,14 @@ ALTER TABLE `usuario_contacto`
   ADD CONSTRAINT `fk_usuario_contacto_estado1` FOREIGN KEY (`fkesatado`) REFERENCES `estado` (`idestado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_usuario_contacto_municipio1` FOREIGN KEY (`fkmunicipio`) REFERENCES `municipio` (`idmunicipio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_usuario_contacto_usuario1` FOREIGN KEY (`fkusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `usuario_farmacia`
+--
+ALTER TABLE `usuario_farmacia`
+  ADD CONSTRAINT `usuario_farmacia_ibfk_1` FOREIGN KEY (`fkfarmacia`) REFERENCES `farmacia` (`idfarmacia`),
+  ADD CONSTRAINT `usuario_farmacia_ibfk_2` FOREIGN KEY (`fkusuario`) REFERENCES `usuario` (`idusuario`),
+  ADD CONSTRAINT `usuario_farmacia_ibfk_3` FOREIGN KEY (`fkestado`) REFERENCES `estado` (`idestado`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

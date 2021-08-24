@@ -124,6 +124,10 @@
 			$Estado_Usuario = 2;
 			$UPDATE_USUARIO = write("update usuario set fkestado=$Estado_Usuario where idusuario=$id_usuario", $Safigdb);
 			break;
+		
+		case 11: //LISTADO DE FARMACIAS PARA LOS USUARIOS ROL FARMACIA//
+			echo json_encode($FARMCIAS = read("SELECT idfarmacia,nombre,foto FROM farmacia where fkestado in(2);", $Safigdb));
+			break;
 			
 		
 				

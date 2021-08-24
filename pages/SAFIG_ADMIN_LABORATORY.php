@@ -20,7 +20,8 @@
 <html lang="en">
 	<head>
 	   <?php echo header_style();?>
-		<script type="text/javascript" src="../js/SAFIG_ADMIN.js"></script>	
+		<script type="text/javascript" src="../js/SAFIG_ADMIN_LABORATORY.js"></script>
+		<script type="text/javascript" src="../js/login_sha512.js"></script>		
 		<script type="text/javascript" src="../js/Timeout_login.js"></script>
 	</head>
 	<body class="hold-transition sidebar-mini">
@@ -29,8 +30,12 @@
 		  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
-			  <li class="nav-item">
+			  <li class="nav-item-buttons">
 				<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+			  </li>
+			</ul>
+			<ul class="navbar-nav">
+			  <li class="nav-item-Button">
 			  </li>
 			</ul>
 			<!-- Right navbar links -->
@@ -72,69 +77,10 @@
 			</aside>
 		  <!-- Content Wrapper. Contains page content -->
 		  <div class="content-wrapper">
-			<!-- Main content -->
-			<div class="container-fluid">
-				<!-- Small boxes (Stat box) -->
-				<div class="row">
-				  <div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-info">
-					  <div class="inner text-center">
-						<h3 id='Usuarios'></h3>
-						<p>USUARIOS</p>
-					  </div>
-					  <div class="icon">
-						<i class="ion ion-bag"></i>
-					  </div>
-					  <a href="SAFIG_ADMIN_USER.php" class="small-box-footer">Mas informacion <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				  </div>
-				  <!-- ./col -->
-				  <div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-success">
-					  <div class="inner text-center">
-						<h3 id='FARMACIAS'><sup style="font-size: 20px"></sup></h3>
-						<p>FARMACIAS</p>
-					  </div>
-					  <div class="icon">
-						<i class="ion ion-stats-bars"></i>
-					  </div>
-					  <a href="SAFIG_ADMIN_PHARMACY.php" class="small-box-footer">Mas informacion <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				  </div>
-				  <!-- ./col -->
-				  <div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-warning">
-					  <div class="inner text-center">
-						<h3 id='LABORATORIOS'></h3>
-						<p>LABORATORIOS</p>
-					  </div>
-					  <div class="icon">
-						<i class="ion ion-person-add"></i>
-					  </div>
-					  <a href="SAFIG_ADMIN_LABORATORY.php" class="small-box-footer">Mas informacion <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				  </div>
-				  <!-- ./col -->
-				  <div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-white">
-					  <div class="inner text-center">
-						<h3 id='PEDIDOS'></h3>
-						<p>PEDIDOS</p>
-					  </div>
-					  <div class="icon">
-						<i class="ion ion-person-add"></i>
-					  </div>
-					  <a href="#" class="small-box-footer">Mas informacion <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				  </div>
-				  <!-- ./col -->
-				</div>
+			<div class="container-fluid" id="table_user">
+				
 			</div>
-			<!-- /.content -->
+			
 		  </div>
 		  <!-- /.content-wrapper -->
 		  <?php echo Footer_style();?>

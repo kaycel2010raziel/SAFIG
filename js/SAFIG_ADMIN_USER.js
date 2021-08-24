@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$(".nav-item-Button").append('<li class="nav-item d-none d-sm-inline-block"><button class="btn btn-info" id="new_user" >Nuevo Usuario</button></li>');
 	$(".nav-item-Button").append('<li class="nav-item d-none d-sm-inline-block"><button title="Generar PDF " class="btn btn-danger ml-2"  id="PDF" ><i class="fa fa-file-pdf-o">PDF</i></button></li>');
-	$("#table_user").html("<div class='container-fluid'><div class='table-responsive h-100 ' id='listadoregistros2'><table id='tbllistado2' class='table table-hover table-bordered text-center'><thead class='thead-dark'><th>NO.</th><th>NOMBRE</th><th>USUARIO</th><th>FOTO</th><th>ROL</th><th>ESTADO</th><th>ACCIONES</th></thead><tbody id='tbllistado_body2'></tbody></table></div></div>");
+	$("#table_user").html("<div class='container-fluid'><div class='table-responsive h-100 ' id='listadoregistros2'><table id='tbllistado2' class='table table-hover table-bordered text-center'><thead class='thead-dark'><th>NO.</th><th>NOMBRE</th><th>USUARIO</th><th>ROL</th><th>ESTADO</th><th>ACCIONES</th></thead><tbody id='tbllistado_body2'></tbody></table></div></div>");
 	$("#new_user").click(function(){New_User();});	
 	$("#PDF").click(function(){PDF_USER();});	
 	//TABLA DE USUARIOS
@@ -18,9 +18,8 @@ $(document).ready(function(){
 			}
 			$("#listadoregistros2 tbody").append("<tr id='listadoregistros2_tr_"+index+"'></tr>");
 			$("#listadoregistros2_tr_"+index).append("<td>"+(index+1)+"</td>");
-			$("#listadoregistros2_tr_"+index).append("<td>"+element['nombre']+"</td>");
+			$("#listadoregistros2_tr_"+index).append("<td><img src='../img/user/" + element['foto'] + "'width='60' class='brand-image img-circle elevation-3' height='60'><p>"+element['nombre']+"</p></td>");
 			$("#listadoregistros2_tr_"+index).append("<td>"+element['usuario']+"</td>");
-			$("#listadoregistros2_tr_"+index).append("<td><img src='../img/user/" + element['foto'] + "'width='60' class='brand-image img-circle elevation-3' height='60'></td>");
 			$("#listadoregistros2_tr_"+index).append("<td>"+element['rol']+"</td>");
 			$("#listadoregistros2_tr_"+index).append("<td class="+EstadoClass1+">"+element['estado']+"</td>");
 			
@@ -412,13 +411,19 @@ $(document).ready(function(){
 		"							</div>"+				
 		"						</div>"+		
 		"					</div>"+
-		"					<div class='row'>"+
+		"					<div class='row' id='footer_register'>"+
 		"						<div class='col-sm-12'>"+
 		"							<div class='form-group'>"+
-		"								<label> <i class='fa fa-img'>&nbsp; </i> Rol: </label>"+
+		"								<label> <i class='fa fa-list'>&nbsp; </i> Rol: </label>"+
 		"								<select class='form-control' type='text' id='Select_Rol' ></select>"+
 		"							</div>"+				
-		"						</div>"+		
+		"						</div>"+
+		"						<div class='col-sm-12' id='farmacias_selector'>"+
+		"							<div class='form-group'>"+
+		"								<label> <i class='fa fa-list'>&nbsp; </i> Farmacia: </label>"+
+		"								<select class='form-control' type='text' id='Select_Farmacia' ></select>"+
+		"							</div>"+				
+		"						</div>"+				
 		"					</div>"+
 		"				</div>"+
 		"					<div class='row pt-4'>"+
@@ -437,6 +442,7 @@ $(document).ready(function(){
 		"	</div>"
 			
 		);
+		$('#farmacias_selector').hide();
 		//CARGAR ROLES//
 		$.ajax({type: "POST", url: "../php/SAFIG_ADMIN_USER.php", async: true , data: {'a0': 2}})
 		.done(function(stream) {	
@@ -445,8 +451,25 @@ $(document).ready(function(){
 			data.forEach(function(element, index, array){
 				$("#Select_Rol").append('<option  value="'+element['idrol']+'">'+element['rol']+'</option>');
 			});
+			$('#Select_Rol').change(function(){ 
+				var op = $('#Select_Rol option:selected').val();
+				if (op == 2) {
+					$('#farmacias_selector').show();
+				}else{
+					$('#farmacias_selector').hide();
+				}				
+			});
 		}); 
-		
+		//CARGAR FARMACIAS PARA LOS USUARIOS ROL FARMACIA//
+		$.ajax({type: "POST", url: "../php/SAFIG_ADMIN_USER.php", async: true , data: {'a0': 11}})
+		.done(function(stream) {	
+			data = jQuery.parseJSON(stream);
+			$("#Select_Farmacia").append('<option  value="0" selected="selected">Seleccione Farmacia a la que pertenece</option>');
+			data.forEach(function(element, index, array){
+				$("#Select_Farmacia").append('<option  value="'+element['idfarmacia']+'">'+element['nombre']+'</option>');
+			});
+		}); 
+
 		$('#lg_modal').modal({backdrop: 'static', keyboard: false})
 
 		//GUARDAR USUARIO//
@@ -461,7 +484,14 @@ $(document).ready(function(){
 			var Password=$('#Password').val(); if(Password==""){alert(info); $("#Password").css("borderColor", "red");slide().stop();  }
 			var file_upload=$('#file-upload').val(); if(file_upload==""){alert(info); $("#file-upload").css("borderColor", "red");slide().stop();  }
 			var Select_Rol=$('#Select_Rol').val(); if(Select_Rol=="0"){alert(info); $("#Select_Rol").css("borderColor", "red");slide().stop();  }
+			var Select_Farmacia=$('#Select_Farmacia').val(); 
 			var CodeSha = hex_sha512(Password);
+			
+			//***********************************///
+			if(Select_Farmacia > 0 ){
+				
+			}
+			
 			
 			$.ajax({type: "POST", url: "../php/SAFIG_ADMIN_USER.php", async: true , data: {a0: 3,nombre:nombre,apellido:apellido,dpi:dpi,nit:nit,nacimiento:nacimiento,usuario:usuario,Select_Rol:Select_Rol,CodeSha:CodeSha}})
 			.done(function(stream) {
